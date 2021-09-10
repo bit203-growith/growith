@@ -1,17 +1,17 @@
 server:
-  port: 8080
+  port: 9090
 
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/growith?serverTimezone=UTC&characterEncoding=UTF-8
-    username: growith
+    url: jdbc:mysql://localhost:3306/example?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
     password: 1234
   jpa:
     show-sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
       naming:
         implicit-strategy : org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
         physical-strategy : org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl

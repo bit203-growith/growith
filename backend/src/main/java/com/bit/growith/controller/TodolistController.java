@@ -12,23 +12,23 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/todolist")
 @RequiredArgsConstructor
 public class TodolistController {
 
     private final TodolistService todolistService;
 
 
-//    //멤버가 가진 모든 태그 목록 조회 //날짜별로
+//    //멤버가 가진 모든 날짜별 투두리스트 목록 조회
     @GetMapping(value = "/todolist", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Todolist>> displayTagList(String email, LocalDate todolistDate) {
+    public ResponseEntity<List<Todolist>> getTodolist(String email, LocalDate todolistDate) {
 
         return new ResponseEntity<>(todolistService.getAllWithMemberAndTodolistDate(email, todolistDate), HttpStatus.OK);
     }
 
     //투두리스트 추가
     //추가할 투두 정보, 날짜 정보, 회원 정보 -> 생성된 투두 정보
-    @PostMapping(value = "")
+    @PostMapping(value = "/todolist")
     public ResponseEntity<Long> createTodolist(@RequestBody Todolist todolist) {
         Long todolistId = todolistService.create(todolist);
         //날짜
@@ -44,10 +44,10 @@ public class TodolistController {
         return new ResponseEntity<>("modified", HttpStatus.OK);
     }
 
-//삭제... delete할까 save할까?
-//    @DeleteMapping(value = "/{todolistId}", produces = MediaType.TEXT_PLAIN_VALUE)
-//    public ResponseEntity<String> deleteTodolist(@PathVariable("todolistId") long todolistId) {
-//        todolistService.delete(todolistId);
-//        return new ResponseEntity<>("deleted", HttpStatus.OK);
-//    }
+    //투두 삭제
+    @DeleteMapping(value = "/{todolistId}", produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> deleteTodolist(@PathVariable("todolistId") long todolistId) {
+        todolistService.delete(todolistId);
+        return new ResponseEntity<>("deleted", HttpStatus.OK);
+    }
 }

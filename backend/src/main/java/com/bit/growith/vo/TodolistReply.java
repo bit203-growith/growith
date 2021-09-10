@@ -16,16 +16,15 @@ public class TodolistReply {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long todolistReplyId;
 
-    //todolistId
     @ManyToOne
-    @JoinColumn(name = "TODOLIST_ID")
+    @JoinColumn(name = "todolist_id")
     private Todolist todolist;
 
-    //emotionaId
     @ManyToOne
-    @JoinColumn(name = "EMOJI_ID")
+    @JoinColumn(name = "emoji_id")
     private Emoji emoji;
 
-    //followId 받아옴
-    //복합키 받아오기
+    @ManyToOne
+    @JoinColumn(name = "follow_id")
+    private Follow follow;
 }

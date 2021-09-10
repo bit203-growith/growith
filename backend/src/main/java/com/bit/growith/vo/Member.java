@@ -23,7 +23,7 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MEMBER_ID")
+    @Column(name = "member_id")
     private long memberId;
 
     @Column(length = 30, nullable = false)
@@ -42,10 +42,6 @@ public class Member {
     @Column(length = 100, nullable = false)
     private String memberComment;
 
-//    @Column
-//    private Gender gender;
-//    @Column
-//    private MemberRole memberRole;
     @Column
     private int isDelete;
     @Column
@@ -55,7 +51,6 @@ public class Member {
     @ElementCollection(fetch = FetchType.LAZY)
     @Builder.Default
     private Set<Gender> genderSet = new HashSet<>();
-
     public void addGender(Gender gender){
         genderSet.add(gender);
     }
@@ -63,7 +58,6 @@ public class Member {
     @ElementCollection(fetch = FetchType.LAZY)
     @Builder.Default
     private Set<MemberRole> roleSet = new HashSet<>();
-
     public void addMemberRole(MemberRole memberRole){
         roleSet.add(memberRole);
     }
@@ -74,6 +68,15 @@ public class Member {
 
 //    @OneToMany(mappedBy = "member")
 //    private List<Follow> follows = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member")
+    private List<Replies> replies;
+
+    @OneToMany(mappedBy = "member")
+    private List<LikeReplies> likeReplies;
+
+    @OneToMany(mappedBy = "member")
+    private List<LikeBoards> likeBoards;
 
 
 }

@@ -26,7 +26,7 @@ public class Teams {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long teamsId;
+	private Long temasId;
 	
 	@ManyToOne
 	@JoinColumn(name = "memberId")

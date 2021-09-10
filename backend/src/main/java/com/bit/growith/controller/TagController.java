@@ -1,6 +1,5 @@
 package com.bit.growith.controller;
 
-import com.bit.growith.dao.TagRepository;
 import com.bit.growith.service.TagServiceImpl;
 import com.bit.growith.vo.Tag;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tags/")
+@RequestMapping("/api/tags")
 @RequiredArgsConstructor
 public class TagController {
 
@@ -20,26 +19,17 @@ public class TagController {
 
     //멤버가 가진 모든 태그 목록 조회
     @GetMapping(value = "/tag", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Tag>> displayTagList(String email) {
+    public ResponseEntity<List<Tag>> getTagList(String email) {
 
+//        if () {
+//            실패
+//        }
         return new ResponseEntity<>(tagService.getAllWithMember(email), HttpStatus.OK);
-    }
-
-    //태그 생성 폼 이동
-    @GetMapping("/createTagForm")
-    public String createTagForm() {
-        return "createTagForm";
-    }
-
-    //태그 수정 폼 이동
-    @GetMapping("/modifyTagForm")
-    public String modifyTagForm() {
-        return "modifyTagForm";
     }
 
     //태그 생성
     //생성할 태그 정보, 회원 정보 -> 생성된 태그 정보
-    @PostMapping(value = "")
+    @PostMapping(value = "/tag")
     public ResponseEntity<Long> createTag(@RequestBody Tag tag) {
         //1. 태그 이름 중복인지 체크한 뒤
         //2. 생성 or 중복 메시지
@@ -54,7 +44,9 @@ public class TagController {
 //            태그이름 중복 아니면
 //                    중복 메시지
 //        }
-
+//        if () {
+//            실패 : 태그 이름 중복되면 예외 메시지
+//        }
         return new ResponseEntity<>(tagId, HttpStatus.OK);
     }
 
@@ -63,6 +55,10 @@ public class TagController {
     @PutMapping(value = "/{tagId}", produces = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> modifyTag(@RequestBody Tag tag) {
         tagService.modify(tag);
+
+        //        if () {
+//            실패
+//        }
         return new ResponseEntity<>("modified", HttpStatus.OK);
     }
 
@@ -71,7 +67,12 @@ public class TagController {
     @DeleteMapping(value = "/{tagId}", produces = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> deleteTag(@PathVariable("tagId") long tagId) {
         tagService.delete(tagId);
+
+        //        if () {
+//            실패
+//        }
         return new ResponseEntity<>("deleted", HttpStatus.OK);
     }
+
 }
 

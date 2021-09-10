@@ -3,33 +3,32 @@ package com.bit.growith.vo;
 import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "follows")
 @Getter
+@Setter
 @ToString
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Follow implements Serializable {
+public class Follow {
 
     @Id
+    @Column(name = "follow_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long followId;
-    //memberId 받아옴1
 
-    @Id
+    //following이 follower를 follow함
     @ManyToOne
-    @JoinColumn(name = "MEMBER_ID")
-    private Member follower;
+    @JoinColumn(name = "following_id")
+    private Member followingId; //from
 
-    //followingId2
-    @Id
     @ManyToOne
-    @JoinColumn(name = "MEMBER_ID")
-    private Member following;
+    @JoinColumn(name = "follower_id")
+    private Member followerId; //to
+
+
 
     //힘들면 Id 하나로 만들고 테스트 다 한다음 복합키로 바꿔도 ㄱㅊ
-
 }

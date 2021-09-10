@@ -19,11 +19,14 @@ public class Replies extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long replyId;
 
+    @Column
+    private Long recruitBoardsId;
+
     @Column(nullable = false,length = 200)
     private String replyContent;
 
-//    @Column // 지우는게 맞는 것 같음 (지운 기록을 남길 필요가 없으니까.. 0903형태)
-//    private int isDelete;
+    @Column
+    private int isDelete;
 
     @ColumnDefault("0")
     private int likeCount;

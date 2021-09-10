@@ -9,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @ToString
 @Builder
 @AllArgsConstructor
@@ -33,7 +34,7 @@ public class Todolist {
 
     //tagId 받아옴
     @ManyToOne
-    @JoinColumn(name = "TAG_ID")
+    @JoinColumn(name = "tag_id")
     private Tag tag;
 
     @OneToMany(mappedBy = "todolist")

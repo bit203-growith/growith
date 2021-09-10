@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface TagService {
 
-    boolean checkDuplicateTagName();
-
     Long create(Tag tag);
     Tag get(Long tagId);
     void modify(Tag tag);
